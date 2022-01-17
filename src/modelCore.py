@@ -4,27 +4,26 @@ ManTra-Net Model Definition
 Created on Thu Nov 29 18:07:45 2018
 
 @author: yue_wu
+@updated_by: gagan3012
 """
 import os
-from keras.layers import Layer, Input, GlobalAveragePooling2D, Lambda, Dense
-from keras.layers import ConvLSTM2D, Conv2D, AveragePooling2D, BatchNormalization
-from keras.constraints import unit_norm, non_neg
-from keras.activations import softmax
-from keras.models import Model
-from keras.initializers import Constant
-from keras.constraints import Constraint
-from keras import backend as K
-from keras.layers.convolutional import _Conv
-from keras.legacy import interfaces
-from keras.engine import InputSpec
+from tensorflow.keras.layers import Layer, Input, GlobalAveragePooling2D, Lambda, Dense
+from tensorflow.keras.layers import ConvLSTM2D, Conv2D, AveragePooling2D, BatchNormalization
+from tensorflow.keras.constraints import unit_norm, non_neg
+from tensorflow.keras.activations import softmax
+from tensorflow.keras.models import Model
+from tensorflow.keras.initializers import Constant
+from tensorflow.keras.constraints import Constraint
+from tensorflow.keras import backend as K
+from tensorflow.python.keras.layers.convolutional import Conv
+from tensorflow.python.keras.engine.input_spec import InputSpec
 import tensorflow as tf
 import numpy as np 
 
 #################################################################################
 # Model Utils for Image Manipulation Classification
 #################################################################################
-class Conv2DSymPadding( _Conv ) :
-    @interfaces.legacy_conv2d_support
+class Conv2DSymPadding( Conv ) :
     def __init__(self, filters,
                  kernel_size,
                  strides=(1, 1),
